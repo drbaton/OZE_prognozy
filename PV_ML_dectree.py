@@ -22,6 +22,7 @@ meanSquaredError = ((fcst - df_test_y) ** 2).mean()
 rmse = np.sqrt(meanSquaredError)
 max_E = df_test_y.max()
 print(f'rmse={rmse:.3f}, %error for max={(rmse/max_E)*100:.2f}%')
+print(model.feature_importances_)
 ##### plot train, test and predict
 fig, ax = plt.subplots(figsize=(10, 4), tight_layout=True)
 plt.plot(df['ds'][train:], df['y'][train:], label='test', c='gray')
