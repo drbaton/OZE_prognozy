@@ -1,2 +1,2 @@
 # OZE_prognozy
-kod programów do książki "Podstawy prognozowania generacji z OZE"
+kody programów (*.py) oraz dane wejściowe (*.csv) do książki "Podstawy prognozowania generacji z OZE"
