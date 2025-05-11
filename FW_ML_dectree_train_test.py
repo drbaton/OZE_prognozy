@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
 import matplotlib.dates as mdates
 from sklearn.tree import DecisionTreeRegressor
+from sklearn import tree
 ##### import data to dateframe 
 df = pd.read_csv('FW_data_3mce_timeseries_full.csv', delimiter=';', decimal='.', parse_dates=['ds'])
 ##### train and test prep.
@@ -33,7 +34,7 @@ plt.xticks(rotation=90, fontsize=8)
 plt.title(f'ML DecisionTree rmse={rmse:.3f}, %error for max={(rmse/max_E)*100:.2f}%', c='black')
 plt.ylabel('E [MWh]')
 plt.legend(loc='upper center')
-plt.savefig('FW_ML_dectree_test_train.png')
+plt.savefig('FW_ML_dectree_test_train.png', dpi=300)
 plt.show()
 ##### save data
 dataset = pd.DataFrame({'data': df['ds'][train:], 'energia': fcst})
@@ -42,3 +43,8 @@ dataset.to_csv('FW_ML_dectree.csv', index=False, sep=';')
 prognoza_v = pd.DataFrame({"V": [1.09,2.20,3.67,4.43,10.11]})
 fcst_5h = model.predict(prognoza_v)
 print(fcst_5h) 
+### plot decision tree
+fig, ax = plt.subplots(figsize=(18, 4), tight_layout=True)
+tree.plot_tree(model, proportion=False, fontsize=6)
+plt.savefig('FW_ML_dectree_stucture.png', dpi=300)
+plt.show()
